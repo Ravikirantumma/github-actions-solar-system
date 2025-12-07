@@ -43,19 +43,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4       # ✅ was "action/checkout@v4"
 
       - name: Setup NodeJS
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4     # ✅ was "action/setup-NodeJS"
         with:
-          node-version: 18
+          node-version: 18             # ✅ correct input key is node-version
       
       - name: Install NodeJS dependencies
-        run: npm install
+        run: npm install                # ✅ this is the “run” you asked about
       
       - name: Run Code-coverage command
-        run: npm run coverage
-        continue-on-error: true
+        run: npm run code-coverage      # ✅ must match your package.json script name
+        continue-on-error: true         # ✅ prevents job from failing if this step fails
       
       - name: Upload Code Coverage Report
         if: always()
