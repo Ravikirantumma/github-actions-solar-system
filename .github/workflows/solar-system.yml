@@ -105,7 +105,7 @@ jobs:
             ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
       
       
-      - name: Build image (push)
+      - name: Build push the image
         uses: docker/build-push-action@v4
         with:
           context: .
