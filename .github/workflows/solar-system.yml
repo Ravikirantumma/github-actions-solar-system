@@ -72,15 +72,16 @@ jobs:
           name: Code-Coverage-Result
           path: coverage
           retention-days: 5
-  Docker:
-    name: containerazation
-    runs-on: ubuntu-lates
+  docker:
+    name: Containerization
+    needs: [unit-testing, code-coverage]   # run after both jobs complete
+    runs-on: ubuntu-latest
     steps:
-    - name: checkout repo
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Docker login
-      uses: docker/login-action@v2.2.0
-      with:
-        username: ${{ vars.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Docker login
+        uses: docker/login-action@v2.2.0
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
